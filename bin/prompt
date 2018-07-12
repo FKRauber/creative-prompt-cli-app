@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/creative_prompt_cli_app'
+
+CreativePrompt::CLI.new.call
