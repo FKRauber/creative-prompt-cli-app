@@ -1,16 +1,20 @@
 class CreativePrompt::CPrompt
 	attr_accessor :name, :date, :genre, :description, :url
 
-	# def self.newest
-	# 	# scrape Poets & Writers for information and return
-	# 	self.scrape_prompts
-	# end
+	def self.newest
+		# scrape Poets & Writers for information and return
+		self.scrape_prompts
+	end
 
 	def self.scrape_prompts
-    binding.pry
+
+		prompts = []
+
+		prompts << self.scrape_pnw
+
+		prompts
 
 		# FAKE LIST UNTIL SCRAPE SET UP
-
 		# prompt_1 = self.new
 		# prompt_1.name = "Sea Change"
 		# prompt_1.date = "09-July-18"
@@ -31,21 +35,15 @@ class CreativePrompt::CPrompt
 		# prompt_3.genre = "Creative Nonfiction"
 		# prompt_3.description = "Description of prompt 3..."
 		# prompt_3.url = "https://www.pw.org/content/procrastiwhat"
-
-		prompts = []
-
-		prompts << self
-
-		prompts
 	end
 
-	# def self.scrape_pnw
-	# 	doc = Nokogiri::HTML(open("https://www.pw.org/writing-prompts-exercises"))
-  #   binding.pry
-	# 	name = doc.search("h2.field-content").text
-	# 	date = doc.search("div.field-content").text
-	# 	genre = doc.search("span.field-content").text
-	# 	description = doc.search("p.MsoNormal").text
-	# end
+	def self.scrape_pnw
+		doc = Nokogiri::HTML(open("https://www.pw.org/writing-prompts-exercises"))
+		binding.pry
+		# name = doc.search("h2.field-content").text
+		# date = doc.search("div.field-content").text
+		# genre = doc.search("span.field-content").text
+		# description = doc.search("p.MsoNormal").text
+	end
 
 end
