@@ -40,7 +40,7 @@ class CreativePrompt::CPrompt
 	def self.scrape_pnw
 		doc = Nokogiri::HTML(open("https://www.pw.org/writing-prompts-exercises"))
 		puts doc.class
-		 puts doc.css("h2.field-content").text
+		# puts doc.css("h2.field-content").text
 		# puts doc.css("div.field-content.meta__date").text
 		# puts doc.css("span.field-content a.active").text
 		# puts doc.css("div.field-content p").text
