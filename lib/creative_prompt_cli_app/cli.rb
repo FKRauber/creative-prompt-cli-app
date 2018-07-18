@@ -5,7 +5,6 @@ class CreativePrompt::CLI
 		puts "Creative Prompts for the Creatively Blocked"
 		list_prompts
 		choice
-		adios
 	end
 
 
@@ -32,6 +31,8 @@ class CreativePrompt::CLI
 				puts "#{the_prompt.date} - #{the_prompt.name} - #{the_prompt.genre}"
 			elsif input == "list"
 				list_prompts
+      elsif input == "exit"
+        adios
 			else
 				puts "Invalid entry, type list or exit"
 			end
