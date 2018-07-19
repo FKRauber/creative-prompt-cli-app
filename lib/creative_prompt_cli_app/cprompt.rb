@@ -1,10 +1,7 @@
 class CreativePrompt::CPrompt
 	attr_accessor :name, :date, :genre, :description, :url
 
-	def self.newest
-		# scrape Poets & Writers for information and return
-		self.scrape_prompts
-	end
+
 
 	def self.scrape_prompts
 
@@ -39,18 +36,23 @@ class CreativePrompt::CPrompt
 
 	def self.scrape_pnw
 		doc = Nokogiri::HTML(open("https://www.pw.org/writing-prompts-exercises"))
-		puts doc.class
+		# puts doc.class
 		# puts doc.css("h2.field-content").text
 		# puts doc.css("div.field-content.meta__date").text
 		# puts doc.css("span.field-content a.active").text
 		# puts doc.css("div.field-content p").text
-		binding.pry
-		doc.each do |element|
-			name = element.search("h2.field-content").text
-			date = element.search("div.field-content meta__date").text
-			genre = element.search("span.field-content").text
-			description = element.search("div.field-content p").text
-		end
+		# puts doc.css("h2.field-content a").first.attr("href")
+		# binding.pry
+
+		#doc.each do |element|
+		prompt = self.new
+		prompt.name = doc.search("h2.field-content")[0].text
+		prompt.date = doc.search("div.field-content.meta__date")[0].text
+		prompt.genre = doc.search("span.field-content a.active")[0].text
+		prompt.description = doc.search("div.field-content p")[0].text
+		prompt.url = doc.search("h2.field-content a").first.attr("href")
+		prompt
+		#end
 	end
 
 end

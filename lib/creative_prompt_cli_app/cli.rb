@@ -14,7 +14,7 @@ class CreativePrompt::CLI
 		# SCRAPE CODE
 		@prompts = CreativePrompt::CPrompt.scrape_prompts
 		@prompts.each.with_index(1) do |prompt, i|
-			puts "#{i}. #{prompt}"
+			puts "#{i}. #{@prompts}
 			#puts "#{i}. #{prompt.date} - #{prompt.name} - #{prompt.genre}"
 		end
 	end
