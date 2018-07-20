@@ -7,15 +7,14 @@ class CreativePrompt::CLI
 		choice
 	end
 
-
+# @prompts.slice(0..4)
 	def list_prompts
 		puts "Prompts organized by date:"
 
 		# SCRAPE CODE
 		@prompts = CreativePrompt::CPrompt.scrape_prompts
-		@prompts.each.with_index(1) do |prompt, i|
-			puts "#{i}. #{@prompts}
-			#puts "#{i}. #{prompt.date} - #{prompt.name} - #{prompt.genre}"
+  	@prompts.each.with_index(1) do |prompt, i|
+			puts "#{i}. #{prompt.date} - #{prompt.genre} - #{prompt.name}"
 		end
 	end
 
@@ -28,7 +27,7 @@ class CreativePrompt::CLI
 
 			if input.to_i > 0
 				the_prompt = @prompts[input.to_i-1]
-				puts "#{the_prompt.date} - #{the_prompt.name} - #{the_prompt.genre}"
+				puts "#{the_prompt.name} - #{the_prompt.description}"
 			elsif input == "list"
 				list_prompts
       elsif input == "exit"
