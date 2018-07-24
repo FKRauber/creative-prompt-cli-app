@@ -12,8 +12,8 @@ class CreativePrompt::CLI
 		puts "Prompts organized by date:"
 
 		# SCRAPE CODE
-		@prompts = CreativePrompt::CPrompt.scrape_prompts
-  	@prompts.each.with_index(1) do |prompt, i|
+		@prompts = CreativePrompt::CPrompt.scrape_pnw
+  	@prompts.each.with_index do |prompt, i|
 			puts "#{i}. #{prompt.date} - #{prompt.genre} - #{prompt.name}"
 		end
 	end
