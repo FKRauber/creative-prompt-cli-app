@@ -20,12 +20,11 @@ class CreativePrompt::CLI
 
 	def choice
 		input = nil
-		while input != "exit"
+    while input != "exit"
 			puts "Please select a prompt from the list above, type list to reprint list of prompts, or type exit:"
 			input = gets.strip.downcase
 
-
-			if input.to_i > 0
+			if input.to_i > 0 && input.to_i <= input.length
 				the_prompt = @prompts[input.to_i-1]
 				puts "#{the_prompt.name} - #{the_prompt.description}"
 			elsif input == "list"
