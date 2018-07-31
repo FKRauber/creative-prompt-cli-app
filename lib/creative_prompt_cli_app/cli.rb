@@ -2,6 +2,7 @@ class CreativePrompt::CLI
 
 	def call
 		puts "Creative Prompts for the Creatively Blocked"
+		CreativePrompt::Scrape.scrape_pnw
 		list_prompts
 		choice
 	end
@@ -9,8 +10,7 @@ class CreativePrompt::CLI
 	def list_prompts
 		puts "Prompts organized by date:"
 
-		@prompts = CreativePrompt::CPrompt.scrape_pnw.slice(0..19)
-  	@prompts.each.with_index(1) do |prompt, i|
+		CreativePrompt::CPrompt.all.each.with_index(1) do |prompt, i|
 			puts "#{i}. #{prompt.date} - #{prompt.genre} - #{prompt.name}"
 		end
 	end
@@ -21,8 +21,8 @@ class CreativePrompt::CLI
 			puts "Please select a prompt from the list above, type list to reprint list of prompts, or type exit:"
 			input = gets.strip.downcase
 
-			if input.to_i > 0 && input.to_i <= @prompts.length
-				the_prompt = @prompts[input.to_i-1]
+			if input.to_i > 0 && input.to_i <= CreativePrompt::CPrompt.all.length
+				the_prompt = CreativePrompt::CPrompt.all[input.to_i-1]
 				puts "#{the_prompt.name} - #{the_prompt.description}"
 			elsif input == "list"
 				list_prompts
